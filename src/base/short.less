@@ -1,0 +1,78 @@
+//  *
+//  * 提供常用的简写及兼容变量
+//  * @return {[type]} [description]
+//  *
+
+// font
+@var-f-yahei: 'Microsoft YaHei', SimHei, arial;
+@var-f-sonti: 'arial, SimSun, helvetica, sans-serif';
+
+.ft( @size : 14px; @fm: @var-f-yahei ){
+    font: @size @fm;
+}
+.gray( @size: 12px; @color: #999; @fm: @var-f-yahei; ) {
+    .ft(@size;@fm);
+    color: @color;
+}
+.overflow() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.vmiddle(@height){
+    height: @height;
+    line-height: @height;
+    vertical-align: middle;
+}
+.opacity(@val){
+    filter:~'alpha( opacity='(@val*100) ~')';
+    _filter:none;
+    -moz-opacity:@val;
+    -khtml-opacity:@val;
+    opacity: @val;  
+}
+.transto(@from;@end){
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(@from),to(@end));
+    background-image: -moz-linear-gradient(top,@from,@end);
+    background-image: -ms-linear-gradient(top,@from,@end);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr=argb(@from), endColorstr=argb(@end));
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr=argb(@from), endColorstr=argb(@end));
+}
+.transition(@param){
+    transition: @param;
+    /* Firefox 4 */
+    -moz-transition:@param;
+    /* Safari and Chrome */
+    -webkit-transition:@param;
+    /* Opera */
+    -o-transition:@param;
+}
+.rotate(@deg){
+    // IE滤镜
+    filter:~"progid:DXImagetransform.Microsoft.Matrix(M11="cos(@deg)~",M12=-"sin(@deg)~",M21="sin(@deg)~",M22="cos(@deg)~",SizingMethod=auto expand)";
+    -ms-filter:~"progid:DXImagetransform.Microsoft.Matrix(M11="cos(@deg)~",M12=-"sin(@deg)~",M21="sin(@deg)~",M22="cos(@deg)~",SizingMethod=auto expand)";
+
+    -moz-transform: rotate(unit(@deg, deg));
+    -webkit-transform: rotate(unit(@deg, deg));
+    transform: rotate(unit(@deg, deg));
+}
+.fixclear{
+    zoom: 1;
+    &:after{
+        content: ' ';
+        display: block;
+        height: 0;
+        clear: both;
+    }
+}
+
+.breakword(){
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+// 兼容
+.ie6pic(@url: ''){
+    _background-image:none!important;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=@url);
+}

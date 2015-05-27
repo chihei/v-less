@@ -1,0 +1,48 @@
+// flex相关
+.flexbox(){
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+.flex-justify-content(@param:space-between) {
+    -webkit-justify-content: @param;
+    justify-content: @param;
+}
+.flex-wrap(@param:wrap){
+    -webkit-flex-wrap: @param;
+    -moz-flex-wrap: @param;
+    -ms-flex-wrap: @param;
+    -o-flex-wrap: @param;
+    flex-wrap: @param;
+}
+.flex-flex(@flex:1){
+    -webkit-box-flex: @flex;
+    -moz-box-flex: @flex;
+    // width: 20%;               /* For old syntax, otherwise collapses. */
+    -webkit-flex: @flex;
+    -ms-flex: @flex;
+    flex: @flex; 
+}
+.dis-box(){
+    display: box;
+    display: -webkit-box;
+}
+
+.flex-order(@order:1){
+    -webkit-box-ordinal-group: @order;
+  -moz-box-ordinal-group: @order;
+  -ms-flex-order: @order;
+  -webkit-order: @order;
+  order: @order;
+}
+
+.calc(@style;@exp){
+    /*Firefox*/
+    @{style}:-moz-calc(@exp);
+    /*chrome safari*/
+    @{style}: -webkit-calc(@exp);
+    /*Standard */
+    @{style}: ~'calc('@exp~')';
+}

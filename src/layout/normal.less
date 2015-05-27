@@ -1,0 +1,82 @@
+// *
+//  * 常用布局less变量库
+//  * @author BottleLiu
+//  * @version 1.0.0
+
+//  bfc/hasLayout 用于清除浮动
+.bfc(){
+    overflow: hidden;
+    zoom: 1;
+}
+ 
+// @import url(short.less);
+.layout-h-center(@class:wrapper;@w:1000px;){
+    .@{class}{
+        position: relative;
+        width: @w;
+        margin: 0 auto;
+    }
+}
+
+// *
+//  * wrapper布局
+//  
+.layout-wrapper(@maxw:1235px;@miniw:1000px;@miniclass:w1000;){
+    .wrapper{
+        position: relative;
+        width: @maxw;
+        margin: 0 auto;
+    }
+
+    .@{miniclass}{
+        .wrapper{
+            width: @miniw;
+        }
+    }
+    
+}
+
+// *
+//  * 多栏布局
+//  * @param 
+//  *      @columnNum: 3; // 栏数
+//  *      @spacing:  -l 水平间距 20px -v 垂直间距 30px;
+//  *      @width: 100px 每个item的宽度
+//  *      @height: : 100px 每个item的高度
+//  *      @border: item项目是否带边框
+//  * @return {[type]}             [description]
+//  *
+.layout-multi-column(@columnNum:3;@spacing-l:20px;@spacing-v:30px;@width:100px; @height:100px;@border:0){
+
+    // 外层盒子
+    .layout-multi-box{
+        width: (@width * @columnNum + @spacing-l * (@columnNum - 1));
+    }
+
+    .layout-multi-list{
+        margin-left: -@spacing-l;
+        margin-top: -@spacing-v;
+        padding: 0px;
+        .bfc;
+
+        li{
+            _display: inline;
+            float: left;
+            width: @width;
+            height: @height;
+            margin-left: @spacing-l;
+            margin-top: @spacing-v;
+            list-style: none;
+        }
+    }
+}
+
+.fixclear{
+    zoom: 1;
+    &:after{
+        content: ' ';
+        display: block;
+        height: 0;
+        clear: both;
+    }
+}
